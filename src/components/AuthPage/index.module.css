@@ -1,0 +1,29 @@
+.header {
+  color: white;
+  margin: 0 0 32px 55px;
+  font-size: 30px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.NavLink:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.superClass {
+  color: rgb(199, 0, 0);
+}
+
+.contSliders {
+  width: 100%;
+}
+
+.contDisplay {
+  display: flex;
+  justify-content: center;
+}
+
+.firstPage {
+  padding-bottom: 40px;
+}

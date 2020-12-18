@@ -1,0 +1,75 @@
+.imgSlider {
+  height: 24.5vw;
+  width: 47vw;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 450ms;
+  position: relative !important;
+  margin-right: 20px;
+  transition: all 450ms;
+}
+
+.imgSlider_loader {
+  height: 24.5vw;
+  width: 47vw;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: rgb(29, 29, 29) !important;
+  transition: transform 450ms;
+  position: relative !important;
+  margin-right: 20px;
+  transition: all 450ms;
+}
+
+.divItem {
+  max-width: 67vw;
+  min-width: 67vw;
+  margin-right: 100px !important;
+}
+
+.imgSlider:hover {
+  opacity: 0.7;
+}
+
+.btnLeft {
+  position: absolute;
+  left: 24%;
+  top: 40%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.btnLeftIcon {
+  font-size: 50px;
+  color: #141414;
+  cursor: pointer;
+  background: linear-gradient(to right, rgba(255, 255, 255), transparent);
+  padding: 15px;
+  border-radius: 100%;
+  transition: all 450ms;
+}
+.btnLeftIcon:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.btnRight {
+  position: absolute;
+  right: 25.2%;
+  top: 40%;
+  cursor: pointer;
+}
+
+.btnRightIcon {
+  font-size: 50px;
+  color: #141414;
+  cursor: pointer;
+  background: linear-gradient(to left, rgba(255, 255, 255), transparent);
+  padding: 15px;
+  border-radius: 100%;
+  transition: all 450ms;
+}
+.btnRightIcon:hover {
+  background-color: white;
+  cursor: pointer;
+}
