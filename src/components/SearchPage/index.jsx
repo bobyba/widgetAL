@@ -4,7 +4,7 @@ import Complete from "./SearchInput/index";
 import { List } from "antd/lib/form/Form";
 import { NavLink } from "react-router-dom";
 import { Button } from "antd";
-import ListTeacher from "../utils/ListRender";
+import ListRender from "../utils/ListRender";
 
 const list1 = [
   {
@@ -47,7 +47,7 @@ const SearchPage = () => {
       <Complete />
       <div className={s.contList}>
         <div className={s.text}>Лучшие преподаватели:</div>
-        <ListTeacher data={list1} avatar={true} />
+        <ListRender data={list1} avatar={true} />
         <NavLink to="/">
           <Button type="link" className={s.link}>
             Больше
@@ -56,7 +56,7 @@ const SearchPage = () => {
       </div>
       <div className={s.contList}>
         <div className={s.text}>Популярные дисциплины:</div>
-        <ListTeacher data={list2} price={true} />
+        <ListRender data={list2} price={true} />
         <NavLink to="/">
           <Button type="link" className={s.link}>
             Больше

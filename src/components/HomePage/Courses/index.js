@@ -1,10 +1,10 @@
 import React from "react";
 import Complete from "./SearchInput/index";
 import s from "./index.module.css";
-import ListTeacher from "../../utils/ListRender";
 import { Button, Select } from "antd";
 import { NavLink } from "react-router-dom";
 import HeaderBack from "../../utils/HeaderBack";
+import ListRender from "../../utils/ListRender";
 
 const { Option } = Select;
 
@@ -101,7 +101,7 @@ const CoursesSelect = (props) => {
           <Complete />
         </div>
         <div className={s.contList}>
-          <ListTeacher
+          <ListRender
             selectItem={props.selectCourse}
             data={list2}
             price={true}

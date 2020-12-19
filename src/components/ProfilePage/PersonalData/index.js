@@ -3,7 +3,7 @@ import { Header } from "antd/lib/layout/layout";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import HeaderBack from "../../utils/HeaderBack";
-import ListTeacher from "../../utils/ListRender";
+import ListRender from "../../utils/ListRender";
 
 import s from "./index.module.css";
 
@@ -25,7 +25,7 @@ const PersonalData = (props) => {
       <div className={s.container}>
         <span className={s.Header}>Родители: </span>
         <div className={s.contButtons}>
-          <ListTeacher data={data1} />
+          <ListRender data={data1} />
         </div>
         <div className={s.btn}>
           <Button type="primary">Добавить</Button>
@@ -33,7 +33,7 @@ const PersonalData = (props) => {
 
         <span className={s.Header}>Школьники: </span>
         <div className={s.contButtons}>
-          <ListTeacher data={data1} />
+          <ListRender data={data1} />
         </div>
         <div className={s.btn}>
           <Button type="primary">Добавить</Button>

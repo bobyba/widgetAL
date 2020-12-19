@@ -3,7 +3,7 @@ import { Header } from "antd/lib/layout/layout";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import HeaderBack from "../../utils/HeaderBack";
-import ListTeacher from "../../utils/ListRender";
+import ListRender from "../../utils/ListRender";
 
 import s from "./index.module.css";
 
@@ -24,7 +24,7 @@ const OffersTable = (props) => {
       />
       <span className={s.Header}> Выберите ребенка: </span>
       <div className={s.contButtons}>
-        <ListTeacher data={data} />
+        <ListRender data={data} />
       </div>
     </div>
   );

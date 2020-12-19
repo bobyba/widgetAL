@@ -13,6 +13,7 @@ class ProfilePageContainer extends Component {
         stepProfile={this.props.stepProfile}
         setStep={this.props.setStepProfileThunk}
         selectUserTimeTable={this.props.setUserDataThunk}
+        userData={this.props.userData}
       />
     );
   }

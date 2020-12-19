@@ -3,8 +3,6 @@ import { apiFirebase } from "../api/api-cloud";
 
 const SET_STEP_HOME = "SET_STEP_HOME";
 
-const SET_FILM_FROM_CLOUD = "SET_FILMS_FROM_CLOUD";
-
 const SET_SELECTED_COURSE = "SET_SELECTED_COURSE";
 
 let initialState = {
@@ -112,13 +110,6 @@ const Home = (state = initialState, action) => {
   }
 };
 
-const setFilmFromCloud = (filmData) => {
-  return {
-    type: SET_FILM_FROM_CLOUD,
-    filmData,
-  };
-};
-
 const setStepHome = (step) => {
   return {
     type: SET_STEP_HOME,
@@ -134,14 +125,6 @@ const setSelectedCourse = (courseData) => {
 };
 
 /* ------------------------------- */
-
-export const getFilmThunk = (filmId) => async (dispatch) => {
-  let response = await apiFirebase.getFilmFromFirebase(filmId);
-
-  if (response) {
-    dispatch(setFilmFromCloud(response));
-  }
-};
 
 export const setStepHomeThunk = (step) => async (dispatch) => {
   dispatch(setStepHome(step));

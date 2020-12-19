@@ -4,16 +4,13 @@ import { apiFirebase } from "../api/api-cloud";
 const SET_STEP_PROFILE = "SET_STEP_PROFILE";
 const SET_USER_DATA = "SET_USER_DATA";
 
-const SET_FILM_FROM_CLOUD = "SET_FILMS_FROM_CLOUD";
-const SET_FILMS_POSTERS_FROM_CLOUD_MOVIES =
-  "SET_FILMS_POSTERS_FROM_CLOUD_MOVIES";
-
 let initialState = {
   stepProfile: "main",
 
   userData: {
     parents: [
       {
+        id: "0",
         fio: "",
         passport: {
           id1part: "",
@@ -23,6 +20,7 @@ let initialState = {
         email: "",
       },
       {
+        id: "1",
         fio: "",
         passport: {
           id1part: "",
@@ -34,6 +32,7 @@ let initialState = {
     ],
     child: [
       {
+        id: "0",
         fio: "",
         birthday: "",
         snils: "",
@@ -58,6 +57,7 @@ let initialState = {
         email: "",
       },
       {
+        id: "1",
         fio: "",
         birthday: "",
         snils: "",
@@ -105,20 +105,6 @@ const ProfileUser = (state = initialState, action) => {
   }
 };
 
-const setFilmFromCloud = (filmData) => {
-  return {
-    type: SET_FILM_FROM_CLOUD,
-    filmData,
-  };
-};
-
-const setFilmsPosterFromFireBaseMovies = (posters) => {
-  return {
-    type: SET_FILMS_POSTERS_FROM_CLOUD_MOVIES,
-    posters,
-  };
-};
-
 /* ------------------------- */
 
 const setStepProfile = (step) => {
@@ -137,14 +123,6 @@ const setUserData = (userData) => {
 
 /* ------------------------------- */
 
-export const getFilmThunk = (filmId) => async (dispatch) => {
-  let response = await apiFirebase.getFilmFromFirebase(filmId);
-
-  if (response) {
-    dispatch(setFilmFromCloud(response));
-  }
-};
-
 export const setStepProfileThunk = (step) => async (dispatch) => {
   dispatch(setStepProfile(step));
 };
@@ -154,22 +132,5 @@ export const setUserDataThunk = (dataUser) => async (dispatch) => {
 };
 
 /* ------------------ */
-
-export const getFilmsPosterThunk = (categories) => async (dispatch) => {
-  if (categories === "/movies") {
-    categories = "movies";
-  } else if (categories === "/series") {
-    categories = "serials";
-  } else if (categories === "/kids") {
-    categories = "kidsmovies";
-  } else {
-    categories = "firstpage";
-  }
-
-  let response = await apiFirebase.getPoster(categories);
-  if (response) {
-    dispatch(setFilmsPosterFromFireBaseMovies(response));
-  }
-};
 
 export default ProfileUser;

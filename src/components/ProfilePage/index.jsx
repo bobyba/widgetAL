@@ -10,31 +10,57 @@ import OffersTable from "./Offers";
 import TimeTableSub from "./TimeTableSub";
 
 const ProfilePage = (props) => {
-  const [step, setStep] = useState(props.stepProfile);
-
-  /*  const step = useEffect(() => {
-    return () => {
-      effect;
-    };
-  }, [props.stepProfile]); */
-
   let render = () => {
     switch (props.stepProfile) {
       case "main":
         return <Main setStep={props.setStep} />;
       case "offers":
-        return <OffersTable setStep={props.setStep} />;
+        return (
+          <OffersTable
+            userChildData={props.userData.child}
+            setStep={props.setStep}
+          />
+        );
+      case "offersSub":
+        return (
+          <OffersTable
+            offersData={props.userData.child} // это
+            setStep={props.setStep}
+          />
+        );
+      case "offerSelectedData":
+        return (
+          <OffersTable
+            offerData={props.userData.child} // это
+            setStep={props.setStep}
+          />
+        );
       case "timetable":
         return (
           <TimeTable
+            userChildData={props.userData.child}
             selectItem={props.selectUserTimeTable}
             setStep={props.setStep}
           />
         );
-      case "timetablesub":
-        return <TimeTableSub />;
+      case "timeTableSub":
+        return (
+          <TimeTableSub
+            selectedTimeTableData={props.timeTableData} // это
+            setStep={props.setStep}
+          />
+        );
       case "personal-data":
-        return <PersonalData setStep={props.setStep} />;
+        return (
+          <PersonalData userData={props.userData} setStep={props.setStep} />
+        );
+      case "personalForm":
+        return (
+          <TimeTable
+            selectedUserData={props.selectUserTimeTable} // это
+            setStep={props.setStep}
+          />
+        );
       default:
         break;
     }
