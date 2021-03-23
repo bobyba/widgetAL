@@ -1,0 +1,30 @@
+.contBox {
+  width: 100%;
+
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 48px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+  margin-top: 10px;
+}
+
+.descrip {
+  margin-bottom: 20px;
+}
+
+.sub {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.link {
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.headerDescrip {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}

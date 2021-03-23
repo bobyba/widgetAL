@@ -2,6 +2,7 @@ import React from "react";
 import s from "./index.module.css";
 
 const HeaderBack = (props) => {
+  debugger;
   return (
     <div
       className={s.contSuperHeader}
@@ -19,7 +20,7 @@ const HeaderBack = (props) => {
         <path
           d="M7 13L1 7L7 1"
           stroke="#9098B1"
-          stroke-width="2"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />

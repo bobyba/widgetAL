@@ -7,16 +7,19 @@ import ListRender from "../../utils/ListRender";
 
 import s from "./index.module.css";
 
-const TimeTable = (props) => {
+const OffersSubTable = (props) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      <HeaderBack setStep={props.setStep} name="Расписание" step="main" />
-      <span className={s.Header}> Выберите ребенка: </span>
+      <HeaderBack setStep={props.setStep} name="Дисциплины" step="offers" />
       <div className={s.contButtons}>
-        <ListRender selectItem={props.selectItem} data={props.userChildData} />
+        <ListRender
+          selectItem={props.selectItem}
+          data={props.selectedChildOffersData}
+          page="offersSub"
+        />
       </div>
     </div>
   );
 };
 
-export default TimeTable;
+export default OffersSubTable;

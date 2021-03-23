@@ -15,7 +15,7 @@
 }
 
 .select {
-  width: 100px;
+  min-width: 93px;
 }
 
 .text {
@@ -37,6 +37,7 @@
 }
 
 .link {
+  width: 100%;
   margin-top: 8px;
   display: flex;
   justify-content: center;

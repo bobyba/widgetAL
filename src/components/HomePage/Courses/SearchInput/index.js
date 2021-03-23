@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { AutoComplete } from "antd";
+import { AutoComplete, Input, Form } from "antd";
 import s from "./index.module.css";
+
+import { SearchOutlined } from "@ant-design/icons";
 
 const mockVal = (str, repeat = 1) => {
   return {
@@ -8,26 +10,49 @@ const mockVal = (str, repeat = 1) => {
   };
 };
 
-const Complete = () => {
-  const [options, setOptions] = useState([
-    { value: "check" },
-    { value: "dseck" },
-  ]);
+const { Search } = Input;
 
-  const onSelect = (data) => {
-    console.log("onSelect", data);
+const Complete = (props) => {
+  debugger;
+
+  const [form] = Form.useForm();
+
+  /*  data = { coursesData }; */
+
+  /* setCoursesData = { setCoursesData }; */
+
+  let selectedAge = props.selectedAge || 0;
+
+  const setSearchCourses = (data) => {
+    props.setCoursesData(
+      props.data.filter((item) => {
+        if (
+          item.label.toUpperCase().indexOf(data.target.value.toUpperCase()) !==
+            -1 &&
+          Number(item.age1) >= Number(selectedAge)
+        ) {
+          debugger;
+          return true;
+        }
+      })
+    );
+    /*   return option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1; */
   };
 
   return (
-    <AutoComplete
-      className={s.search}
-      options={options}
-      onSelect={onSelect}
-      placeholder="🔍⠀Найти направленность"
-      filterOption={(inputValue, option) =>
-        option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-      }
-    />
+    <Form form={form} className={s.search} onFieldsChange={setSearchCourses}>
+      <Form.Item>
+        <Input
+          nostyle="true"
+          name="search"
+          suffix={
+            <SearchOutlined style={{ color: "#1890ff", fontSize: "13px" }} />
+          }
+          onChange={setSearchCourses}
+          placeholder="Найти направленность"
+        />
+      </Form.Item>
+    </Form>
   );
 };
 

@@ -7,10 +7,14 @@ let initialState = {
   statusPop: false,
 };
 
-const appReducer = (state = initialState, action) => {
+const appInit = (state = initialState, action) => {
   switch (action.type) {
     case INITIALIZED_SUCCESS:
-      return { ...state, initialStatus: true, statusPop: false };
+      return {
+        ...state,
+        initialStatus: !state.initialStatus,
+        statusPop: false,
+      };
     case INITIALIZED_UNSUCCESS:
       return { ...state, initialStatus: false, statusPop: true };
     case UPDATE_POP:
@@ -19,7 +23,6 @@ const appReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 export const initialzedSuccess = () => {
   return {
     type: INITIALIZED_SUCCESS,
@@ -41,7 +44,7 @@ export const updatePop = () => {
 export const initiliazedApp = (password, pay) => async (dispatch) => {
   if (password === "AC15DAB5E0") {
     dispatch(initialzedSuccess());
-  } else {          
+  } else {
     dispatch(initialzedUnSuccess());
   }
 
@@ -54,4 +57,8 @@ export const initiliazedApp = (password, pay) => async (dispatch) => {
   }, 1500);
 };
 
-export default appReducer;
+export const setAuthThunk = () => async (dispatch) => {
+  dispatch(initialzedSuccess());
+};
+
+export default appInit;

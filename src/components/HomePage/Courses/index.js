@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Complete from "./SearchInput/index";
 import s from "./index.module.css";
 import { Button, Select } from "antd";
@@ -8,62 +8,8 @@ import ListRender from "../../utils/ListRender";
 
 const { Option } = Select;
 
-const list1 = [
-  {
-    name: "Генерал росгвардии России",
-    descrip: "Главный по капусте",
-    avatar: "",
-  },
-  {
-    name: "Петр Сергеевич Сванидзе",
-    descrip: "Главный по хинкалям",
-    avatar: "",
-  },
-  {
-    name: "Иванов Иван Иванович",
-    avatar: "",
-    descrip: "Главный по бананам",
-  },
-];
-const list2 = [
-  {
-    name: "Тяжелая химия",
-    descrip: "Главный по курсорам",
-    price: "1 000",
-  },
-  {
-    name: "Ножевой бой",
-    descrip: "Главный по мясу",
-    price: "4 000",
-  },
-  {
-    name: "Бег от копов",
-    descrip: "Главный по стаканчикам",
-    price: "3 000",
-  },
-  {
-    name: "Бег от копов",
-    descrip: "Главный по стаканчикам",
-    price: "3 000",
-  },
-  {
-    name: "Бег от копов",
-    descrip: "Главный по стаканчикам",
-    price: "3 000",
-  },
-  {
-    name: "Бег от копов",
-    descrip: "Главный по стаканчикам",
-    price: "3 000",
-  },
-  {
-    name: "Бег от копов",
-    descrip: "Главный по стаканчикам",
-    price: "3 000",
-  },
-];
-
 const CoursesSelect = (props) => {
+  debugger;
   let renderNameHeader = () => {
     switch (props.step) {
       case "tech":
@@ -82,6 +28,27 @@ const CoursesSelect = (props) => {
         break;
     }
   };
+
+  let [selectedAge, setSelectedAge] = useState(0);
+
+  let selectChangeAge = (age) => {
+    setSelectedAge(age);
+
+    setCoursesData(
+      props.selectedCoursesData.filter((item) => {
+        if (Number(item.age1) >= Number(age)) {
+          return true;
+        }
+      })
+    );
+  };
+
+  let [coursesData, setCoursesData] = useState(props.selectedCoursesData);
+
+  let resetAndAllShow = () => {
+    setCoursesData(props.selectedCoursesData);
+  };
+
   return (
     <>
       <HeaderBack
@@ -91,24 +58,41 @@ const CoursesSelect = (props) => {
       />
       <div className={s.contBox}>
         <div className={s.contSelectComplete}>
-          <Select placeholder="Возраст" className={s.select}>
+          <Select
+            placeholder="Возраст"
+            className={s.select}
+            onChange={selectChangeAge}
+          >
+            <Option value="6">6</Option>
+            <Option value="7">7</Option>
+            <Option value="8">8</Option>
+            <Option value="9">10</Option>
+            <Option value="11">11</Option>
+            <Option value="12">12</Option>
+            <Option value="13">14</Option>
             <Option value="14">14</Option>
             <Option value="15">15</Option>
             <Option value="16">16</Option>
             <Option value="17">17</Option>
             <Option value="18">18</Option>
           </Select>
-          <Complete />
+          <Complete
+            data={props.selectedCoursesData}
+            selectedAge={selectedAge}
+            setCoursesData={setCoursesData}
+          />
         </div>
         <div className={s.contList}>
           <ListRender
             selectItem={props.selectCourse}
-            data={list2}
+            data={coursesData}
             price={true}
           />
-          <NavLink to="/" className={s.link}>
-            <Button type="link">Показать все</Button>
-          </NavLink>
+          {coursesData.length === 0 && (
+            <Button className={s.link} onClick={resetAndAllShow} type="link">
+              Показать все
+            </Button>
+          )}
         </div>
       </div>
     </>

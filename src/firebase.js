@@ -13,7 +13,8 @@ firebase.initializeApp({
 
 const db = firebase.firestore();
 const funcs = firebase.functions();
-const an = firebase.analytics();
+const storage = firebase.storage()
+firebase.analytics();
 
 export { db, funcs };
 export default firebase;

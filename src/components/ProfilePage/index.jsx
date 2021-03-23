@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import { useState } from "react";
 import s from "./index.module.css";
 import { Button } from "antd";
 import { useRouteMatch } from "react-router";
@@ -8,63 +8,112 @@ import TimeTable from "./TimeTable/index";
 import PersonalData from "./PersonalData";
 import OffersTable from "./Offers";
 import TimeTableSub from "./TimeTableSub";
+import PersonalForm from "./PersonalForm";
+import OffersSubTable from "./OffersSub";
+import OfferInfo from "./OfferInfo";
 
-const ProfilePage = (props) => {
+import AuthPageContainer from "../AuthPage/indexContainer";
+
+let ProfilePage = ({
+  authUser,
+  exitAuthUser,
+  stepProfile,
+  setAuthThunk,
+  setStep,
+  selectChildOffers,
+  userData,
+  selectedChildOffersData,
+  selectChildOfferForOfferInfo,
+  selectedUserDataForOfferInfo,
+  selectUserTimeTable,
+  selectedUserDataForTimetable,
+  selectForm,
+  createParentUserData,
+  selectedUserDataForForm,
+  updateParentUserData,
+  createChildUserData,
+  updateChildUserData,
+}) => {
+  const [selectedOrNew, setSelectedOrNew] = useState();
   let render = () => {
-    switch (props.stepProfile) {
-      case "main":
-        return <Main setStep={props.setStep} />;
-      case "offers":
-        return (
-          <OffersTable
-            userChildData={props.userData.child}
-            setStep={props.setStep}
-          />
-        );
-      case "offersSub":
-        return (
-          <OffersTable
-            offersData={props.userData.child} // это
-            setStep={props.setStep}
-          />
-        );
-      case "offerSelectedData":
-        return (
-          <OffersTable
-            offerData={props.userData.child} // это
-            setStep={props.setStep}
-          />
-        );
-      case "timetable":
-        return (
-          <TimeTable
-            userChildData={props.userData.child}
-            selectItem={props.selectUserTimeTable}
-            setStep={props.setStep}
-          />
-        );
-      case "timeTableSub":
-        return (
-          <TimeTableSub
-            selectedTimeTableData={props.timeTableData} // это
-            setStep={props.setStep}
-          />
-        );
-      case "personal-data":
-        return (
-          <PersonalData userData={props.userData} setStep={props.setStep} />
-        );
-      case "personalForm":
-        return (
-          <TimeTable
-            selectedUserData={props.selectUserTimeTable} // это
-            setStep={props.setStep}
-          />
-        );
-      default:
-        break;
+    if (!authUser) {
+      debugger;
+      return <AuthPageContainer />;
+    } else {
+      switch (stepProfile) {
+        case "main":
+          return (
+            <Main
+              exitAuthUser={exitAuthUser}
+              setAuthThunk={setAuthThunk}
+              setStep={setStep}
+            />
+          );
+        case "offers":
+          return (
+            <OffersTable
+              selectItem={selectChildOffers}
+              userChildData={userData.child}
+              setStep={setStep}
+            />
+          );
+        case "offersSub":
+          return (
+            <OffersSubTable
+              selectedChildOffersData={selectedChildOffersData}
+              selectItem={selectChildOfferForOfferInfo}
+              setStep={setStep}
+            />
+          );
+        case "offerInfo":
+          return (
+            <OfferInfo
+              offerData={selectedUserDataForOfferInfo} // это
+              setStep={setStep}
+            />
+          );
+        case "timetable":
+          return (
+            <TimeTable
+              userChildData={userData.child}
+              selectItem={selectUserTimeTable}
+              setStep={setStep}
+            />
+          );
+        case "timeTableSub":
+          return (
+            <TimeTableSub
+              selectedTimeTableData={selectedUserDataForTimetable} // это
+              setStep={setStep}
+            />
+          );
+        case "personal-data":
+          return (
+            <PersonalData
+              setSelectedOrNew={setSelectedOrNew}
+              userData={userData}
+              selectForm={selectForm}
+              setStep={setStep}
+            />
+          );
+        case "personalForm":
+          return (
+            <PersonalForm
+              createParentUserData={createParentUserData}
+              updateParentUserData={updateParentUserData}
+              createChildUserData={createChildUserData}
+              updateChildUserData={updateChildUserData}
+              selectedOrNew={selectedOrNew}
+              selectedUserData={selectedUserDataForForm}
+              setStep={setStep}
+            />
+          );
+        default:
+          break;
+      }
     }
   };
+
   return <div style={{ height: "100vh" }}>{render()}</div>;
 };
 export default ProfilePage;

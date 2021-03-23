@@ -1,4 +1,4 @@
-.header {
+/* .header {
   color: white;
   margin: 0 0 32px 55px;
   font-size: 30px;
@@ -26,4 +26,18 @@
 
 .firstPage {
   padding-bottom: 40px;
+}
+ */
+
+.firstPage {
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 300px 40px 100px 100px;
+}
+
+.contMosLogo {
+  
+}
+
+.contMos{
 }

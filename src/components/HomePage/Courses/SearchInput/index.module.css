@@ -1,12 +1,10 @@
 .search {
-    width: 100%;
-    font-size: 13px;
-    margin-bottom: -50px !important;
+  width: 100%;
+  font-size: 13px;
+}
+
+@media (max-width: 320px) {
+  .search {
+    width: 90%;
   }
-  
-  @media (max-width: 320px) {
-    .search {
-      width: 90%;
-    }
-  }
-  
+}

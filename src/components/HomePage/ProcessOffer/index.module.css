@@ -13,6 +13,17 @@
   width: 100%;
 }
 
-.btn{
+.btn {
   margin: 25px auto;
+}
+
+.btnPayCont {
+  margin-top: 45px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.link{
+  margin-right: 50px;
 }

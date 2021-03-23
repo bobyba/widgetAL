@@ -8,13 +8,6 @@ import ListRender from "../../utils/ListRender";
 import s from "./index.module.css";
 
 const OffersTable = (props) => {
-  const data = [
-    { name: "Шласк Илений Спейсиксович" },
-    { name: "Хакисов Абдурахмед Ахмедукович" },
-    { name: "Щекунтовоков Констурмарт Шопаклякович" },
-    { name: "Кентавров Сарадин Кострамской" },
-    { name: "Ездриев Членгисхан Шатокастелович" },
-  ];
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <HeaderBack
@@ -24,7 +17,7 @@ const OffersTable = (props) => {
       />
       <span className={s.Header}> Выберите ребенка: </span>
       <div className={s.contButtons}>
-        <ListRender data={data} />
+        <ListRender selectItem={props.selectItem} data={props.userChildData} />
       </div>
     </div>
   );

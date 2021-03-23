@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./index.module.css";
 import { Link, NavLink } from "react-router-dom";
 import Main from "./Main/index";
 import CoursesSelect from "./Courses/index";
-import SelectedCourse from "./CourseRegestr";
+import SelectedCourse from "./SelectedCourse";
+import ProcessOffer from "./ProcessOffer";
 
-const HomePage = (props) => {
-  debugger;
+import ProcessOfferSub from "./ProcessOfferSub";
+
+import AuthPageContainer from "../AuthPage/indexContainer";
+
+const HomePage = ({
+  step,
+  setStep,
+  selectedCoursesData,
+  selectCourse,
+  authUser,
+  selectCourseData,
+  userData,
+  selectedUserDataForForm,
+  selectFormUserForHome,
+}) => {
+  const [selectedOrNew, setSelectedOrNew] = useState();
+
   let render = () => {
-    switch (props.step) {
+    switch (step) {
       case "main":
-        return <Main setStep={props.setStep} />;
+        return <Main setStep={setStep} />;
       case "tech":
       case "art":
       case "social":
@@ -19,20 +35,43 @@ const HomePage = (props) => {
       case "sport":
         return (
           <CoursesSelect
-            selectCourse={props.selectCourse}
-            setStep={props.setStep}
-            step={props.step}
+            selectedCoursesData={selectedCoursesData}
+            selectCourse={selectCourse}
+            setStep={setStep}
+            step={step}
           />
         );
       case "selectedCourse":
         return (
           <SelectedCourse
-            dataCourse={props.selectCourseData}
-            setStep={props.setStep}
+            authUser={authUser}
+            dataCourse={selectCourseData}
+            setStep={setStep}
+            step={step}
+          />
+        );
+      case "processOffer":
+        if (!authUser) {
+          return <AuthPageContainer />;
+        }
+        return (
+          <ProcessOffer
+            setSelectedOrNew={setSelectedOrNew}
+            selectForm={selectFormUserForHome}
+            userData={userData}
+            setStep={setStep}
+          />
+        );
+      case "processOfferSub":
+        return (
+          <ProcessOfferSub
+            selectedOrNew={selectedOrNew}
+            selectedUserData={selectedUserDataForForm}
+            setStep={setStep}
           />
         );
       default:
-        return <Main setStep={props.setStep} />;
+        return <Main setStep={setStep} />;
     }
   };
 
