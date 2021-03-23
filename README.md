@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Деплой - https://alaborsoft-b7fa0.web.app/ (Нужно открыть с мобильной версии)
+
 
 ## Available Scripts
 
